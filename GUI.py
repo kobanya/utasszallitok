@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton, QTableWidget, QTableWidgetItem
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
@@ -7,7 +7,7 @@ class PitotCalculator(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Sebességi osztály")
-        self.setGeometry(400, 300, 400, 350)
+        self.setGeometry(200, 300, 1300, 400)
 
         self.label_pressure = QLabel("Sebesség:", self)
         self.label_pressure.move(50, 30)
@@ -26,6 +26,30 @@ class PitotCalculator(QMainWindow):
         self.label_image = QLabel(self)
         self.label_image.setGeometry(80, 180, 240, 150)
         self.label_image.setAlignment(Qt.AlignCenter)
+
+        self.table = QTableWidget(self)
+        self.table.setGeometry(350, 30, 240, 300)
+
+        self.load_data()
+
+    def load_data(self):
+        with open('utasszallitok.txt', 'r') as file:
+            lines = file.readlines()
+
+            # Felbontás és adatok hozzáadása a táblázathoz
+            header = lines[0].strip().split(';')
+            self.table.setColumnCount(len(header))
+            self.table.setHorizontalHeaderLabels(header)
+            self.table.setGeometry(350, 30, 900, 300)
+            self.table.setColumnWidth(0, 215)
+            self.table.setColumnWidth(4, 120)
+            self.table.setColumnWidth(5, 120)
+
+            data = [line.strip().split(';') for line in lines[1:]]
+            self.table.setRowCount(len(data))
+            for i, row in enumerate(data):
+                for j, item in enumerate(row):
+                    self.table.setItem(i, j, QTableWidgetItem(item))
 
     def calculate_speed_category(self):
         speed = float(self.input_pressure.text())
