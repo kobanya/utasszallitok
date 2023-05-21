@@ -110,30 +110,44 @@ class PitotCalculator(QMainWindow):
         else:
             self.label_max_utas.setText("Nincs elérhető adat a legtöbb utast szállító gépről.")
 
-
-
     def calculate_speed_category(self):
-        speed = float(self.input_pressure.text())
+        speed_text = self.input_pressure.text()
+        if not speed_text:
+            # Ha a beviteli mező üres, hibaüzenetet jelenítünk meg
+            self.label_result.setText("Kérem adjon meg egy sebességet!")
+            self.label_result.setStyleSheet("color: red")  # Beállítjuk a piros színt
+            self.label_image.clear()  # Töröljük a képet
+            return
 
-        if speed < 500:
-            speed_category = "Alacsony sebességű repülőgép"
-            image_path = "dulpafedele.png"
-        elif speed < 1000:
-            speed_category = "Szubszónikus sebességű repülőgép"
-            image_path = "szub.png"
-        elif speed < 1200:
-            speed_category = "Transzszónikus sebességű repülőgép"
-            image_path = "concorde.png"
-        else:
-            speed_category = "Hiperszónikus sebességű repülőgép"
-            image_path = "mig.jpg"
+        try:
+            speed = float(speed_text)
 
-        self.label_result.setText(speed_category)
+            if speed < 500:
+                speed_category = "Alacsony sebességű repülőgép"
+                image_path = "dulpafedele.png"
+            elif speed < 1000:
+                speed_category = "Szubszónikus sebességű repülőgép"
+                image_path = "szub.png"
+            elif speed < 1200:
+                speed_category = "Transzszónikus sebességű repülőgép"
+                image_path = "concorde.png"
+            else:
+                speed_category = "Hiperszónikus sebességű repülőgép"
+                image_path = "mig.jpg"
 
-        # Set the image
-        pixmap = QPixmap(image_path)
-        pixmap = pixmap.scaled(self.label_image.size(), Qt.AspectRatioMode.KeepAspectRatio)
-        self.label_image.setPixmap(pixmap)
+            self.label_result.setText(speed_category)
+            self.label_result.setStyleSheet("color: blue")
+
+            # Set the image
+            pixmap = QPixmap(image_path)
+            pixmap = pixmap.scaled(self.label_image.size(), Qt.AspectRatioMode.KeepAspectRatio)
+            self.label_image.setPixmap(pixmap)
+
+        except ValueError:
+            # Ha a beviteli mező nem számot tartalmaz, hibaüzenetet jelenítünk meg
+            self.label_result.setText("Érvénytelen sebességérték!")
+            self.label_image.clear()  # Töröljük a képet
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
