@@ -99,7 +99,7 @@ else:
 
             adatsor = f"{tipus};{ev};{utas};{szemelyzet};{utazosebesseg};{felszallotomeg_tonna};{fesztav_labbal}\n"
             file.write(adatsor)
-#
+print('8. feladat\tAz adatokat elmentettem ')
 '''
 for objektum in objektumok:
     print(f"Típus: {objektum.tipus}")
