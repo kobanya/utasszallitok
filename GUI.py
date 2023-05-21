@@ -7,7 +7,7 @@ class PitotCalculator(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Sebességi osztály")
-        self.setGeometry(200, 300, 1300, 400)
+        self.setGeometry(200, 300, 1300, 450)
 
         self.label_pressure = QLabel("Sebesség:", self)
         self.label_pressure.move(50, 30)
@@ -24,8 +24,16 @@ class PitotCalculator(QMainWindow):
         self.label_result.setAlignment(Qt.AlignCenter)
 
         self.label_darab = QLabel("", self)
-        self.label_darab.setGeometry(350, 340, 400, 30)
+        self.label_darab.setGeometry(350, 350, 400, 30)
         self.label_darab.setAlignment(Qt.AlignLeft)
+
+        self.label_max_sebesseg = QLabel("", self)
+        self.label_max_sebesseg.setGeometry(350, 370, 700, 30)
+        self.label_max_sebesseg.setAlignment(Qt.AlignLeft)
+
+        self.label_max_utas = QLabel("", self)
+        self.label_max_utas.setGeometry(350, 390, 700, 30)
+        self.label_max_utas.setAlignment(Qt.AlignLeft)
 
         self.label_image = QLabel(self)
         self.label_image.setGeometry(80, 180, 240, 150)
@@ -55,9 +63,54 @@ class PitotCalculator(QMainWindow):
                 for j, item in enumerate(row):
                     self.table.setItem(i, j, QTableWidgetItem(item))
 
-        #A lista elemeinek darabszáma
-        darabszam = len(lines)-1
+        # A lista elemeinek darabszáma
+        darabszam = len(lines) - 1
         self.label_darab.setText(f"A táblázatban található repülőgépek száma: {str(darabszam)} darab.")
+
+        # Legnagyobb utazási sebességű gép adatai
+        max_sebesseg = 0
+        legnagyobb_gep_adatok = None
+        for i in range(1, len(lines)):
+            sor = lines[i].strip().split(';')
+            try:
+                sebesseg = float(sor[4])
+                if sebesseg > max_sebesseg:
+                    max_sebesseg = sebesseg
+                    legnagyobb_gep_adatok = sor
+            except ValueError:
+                continue
+
+        if legnagyobb_gep_adatok:
+            legnagyobb_gep_nev = legnagyobb_gep_adatok[0]
+            legnagyobb_gep_sebesseg = legnagyobb_gep_adatok[4]
+
+            self.label_max_sebesseg.setText(
+                f"Legnagyobb sebességű gép a {legnagyobb_gep_nev} melynek utazósebessége: {legnagyobb_gep_sebesseg} km/h")
+        else:
+            self.label_max_sebesseg.setText("Nincs elérhető adat a legnagyobb sebességű gépről.")
+
+            # Legtöbb utast szállító gép adatai
+        legtobb_utas = 0
+        legtobb_tipus = ""
+        for i in range(1, len(lines)):
+            sor = lines[i].strip().split(';')
+            if len(sor) >= 5:  # Ellenőrzés, hogy a sor tartalmazza-e a szükséges elemeket
+                utasok = sor[2].split('-')
+                if len(utasok) >= 2:  # Ellenőrzés, hogy a szöveg megfelelően osztható-e
+                    try:
+                        utasok = int(utasok[1])
+                        if utasok > legtobb_utas:
+                            legtobb_utas = utasok
+                            legtobb_tipus = sor[0]
+                    except ValueError:
+                        continue
+
+        if legtobb_tipus:
+            self.label_max_utas.setText(f"Legtöbb utast szállító gép típusa: {legtobb_tipus}, amely  {legtobb_utas} utast is el tud szállítani.")
+        else:
+            self.label_max_utas.setText("Nincs elérhető adat a legtöbb utast szállító gépről.")
+
+
 
     def calculate_speed_category(self):
         speed = float(self.input_pressure.text())
