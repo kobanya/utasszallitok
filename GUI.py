@@ -41,7 +41,7 @@ class PitotCalculator(QMainWindow):
             image_path = "concorde.png"
         else:
             speed_category = "Hiperszónikus sebességű repülőgép"
-            image_path = "mig.png"
+            image_path = "mig.jpg"
 
         self.label_result.setText(speed_category)
 
