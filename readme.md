@@ -68,4 +68,6 @@ mért nyomásadatok alapján a Mach-számot határozhatjuk meg szubszonikus sebe
 if esetén!(Utazosebesseg< 500) --> "Alacsony sebességű"; <br>
 else if (Utazosebesseg < 1000) --> "Szubszonikus"; <br>
 else if (Utazosebesseg < 1200) --> "Transzszonikus";<br>
-else --> "Szuperszonikus"
+else --> "Szuperszonikus"<br><br>
+
+![Kategóriák](https://raw.githubusercontent.com/kobanya/utasszallitok/master/kategoriak.png)
