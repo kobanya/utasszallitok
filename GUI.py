@@ -23,6 +23,10 @@ class PitotCalculator(QMainWindow):
         self.label_result.setGeometry(40, 130, 300, 30)
         self.label_result.setAlignment(Qt.AlignCenter)
 
+        self.label_darab = QLabel("", self)
+        self.label_darab.setGeometry(350, 340, 400, 30)
+        self.label_darab.setAlignment(Qt.AlignLeft)
+
         self.label_image = QLabel(self)
         self.label_image.setGeometry(80, 180, 240, 150)
         self.label_image.setAlignment(Qt.AlignCenter)
@@ -50,6 +54,10 @@ class PitotCalculator(QMainWindow):
             for i, row in enumerate(data):
                 for j, item in enumerate(row):
                     self.table.setItem(i, j, QTableWidgetItem(item))
+
+        #A lista elemeinek darabszáma
+        darabszam = len(lines)-1
+        self.label_darab.setText(f"A táblázatban található repülőgépek száma: {str(darabszam)} darab.")
 
     def calculate_speed_category(self):
         speed = float(self.input_pressure.text())
