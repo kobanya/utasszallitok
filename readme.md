@@ -1,4 +1,4 @@
-Utasszállító repülőgépek
+***Utasszállító repülőgépek -  Feladatleírás*** <br>
 A két világháború közötti időszak volt a repülés hőskora. 1933-ban a Boeing cég készítette
 247-es gép volt a világ első modern utasszállító repülője, melynek közel 300 km/h lett a
 csúcssebessége, vagyis gyorsabb volt, mint a kor legtöbb harci repülője. Ebben a feladatban az
@@ -63,9 +63,9 @@ d. A fesztávolság láb mértékegységgel kifejezve, tetszőleges módszerrel 
 kerekítve kerüljön az adatsorokba. (1 m = 3,2808 láb)<br>
 9. Készítsen grafikus alkalmazást, melynek a projektjét MachKalkulatorGUI néven mentse
 el, melynek segítségével egy repülőgép Pitot-cső rendszerű nyomásérzékelő műszerével
-mért nyomásadatok alapján a Mach-számot határozhatjuk meg szubszonikus sebesség <br>
-Sebességkategóriák<br>
-if esetén!(Utazosebesseg< 500) --> "Alacsony sebességű"; <br
+mért nyomásadatok alapján a Mach-számot határozhatjuk meg szubszonikus sebességet <br>
+Sebességkategóriák<br><br>
+if esetén!(Utazosebesseg< 500) --> "Alacsony sebességű"; <br>
 else if (Utazosebesseg < 1000) --> "Szubszonikus"; <br>
 else if (Utazosebesseg < 1200) --> "Transzszonikus";<br>
 else --> "Szuperszonikus"
