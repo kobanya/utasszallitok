@@ -7,7 +7,7 @@ setup(
     executables=[Executable("GUI.py")],
     options={
         "build_exe": {
-            "include_files": ["szub.png","mig.jpg","concorde.png","dulpafedele.png"]
+            "include_files": ["szub.png","mig.jpg","concorde.png","dulpafedele.png","utasszallitok.txt"]
         }
     }
 )

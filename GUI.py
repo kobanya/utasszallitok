@@ -39,8 +39,10 @@ class PitotCalculator(QMainWindow):
         self.label_image.setGeometry(80, 180, 240, 150)
         self.label_image.setAlignment(Qt.AlignCenter)
 
+
         self.table = QTableWidget(self)
         self.table.setGeometry(350, 30, 240, 300)
+        self.table.setSortingEnabled(True) # sorrendbe rendezés
 
         self.load_data()
 
