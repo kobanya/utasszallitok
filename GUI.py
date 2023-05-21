@@ -9,15 +9,15 @@ class PitotCalculator(QMainWindow):
         self.setWindowTitle("Sebességi osztály")
         self.setGeometry(200, 300, 1300, 450)
 
-        self.label_pressure = QLabel("Sebesség:", self)
-        self.label_pressure.move(50, 30)
+        self.label_sebesseg = QLabel("Sebesség:", self)
+        self.label_sebesseg.move(50, 30)
 
-        self.input_pressure = QLineEdit(self)
-        self.input_pressure.move(170, 30)
+        self.input_sebesseg = QLineEdit(self)
+        self.input_sebesseg.move(170, 30)
 
-        self.button_calculate = QPushButton("Számítás", self)
-        self.button_calculate.move(170, 80)
-        self.button_calculate.clicked.connect(self.calculate_speed_category)
+        self.button_szamitas = QPushButton("Számítás", self)
+        self.button_szamitas.move(170, 80)
+        self.button_szamitas.clicked.connect(self.calculate_speed_category)
 
         self.label_result = QLabel("", self)
         self.label_result.setGeometry(40, 130, 300, 30)
@@ -38,7 +38,6 @@ class PitotCalculator(QMainWindow):
         self.label_image = QLabel(self)
         self.label_image.setGeometry(80, 180, 240, 150)
         self.label_image.setAlignment(Qt.AlignCenter)
-
 
         self.table = QTableWidget(self)
         self.table.setGeometry(350, 30, 240, 300)
@@ -113,7 +112,7 @@ class PitotCalculator(QMainWindow):
             self.label_max_utas.setText("Nincs elérhető adat a legtöbb utast szállító gépről.")
 
     def calculate_speed_category(self):
-        speed_text = self.input_pressure.text()
+        speed_text = self.input_sebesseg.text()
         if not speed_text:
             # Ha a beviteli mező üres, hibaüzenetet jelenítünk meg
             self.label_result.setText("Kérem adjon meg egy sebességet!")
