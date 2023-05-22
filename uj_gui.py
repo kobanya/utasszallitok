@@ -7,7 +7,7 @@ class PassengerCalculator(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Utasszállítók")
-        self.setGeometry(200, 300, 1050, 400)
+        self.setGeometry(200, 300, 1150, 400)
 
         self.details_label = QLabel("", self)
         self.details_label.setGeometry(10, 200, 300, 180)
@@ -15,7 +15,7 @@ class PassengerCalculator(QMainWindow):
         self.details_label.setStyleSheet("border: 1px solid black;")
 
         self.table = QTableWidget(self)
-        self.table.setGeometry(320, 10, 710, 380)
+        self.table.setGeometry(320, 10, 800, 380)
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
 
         self.table.itemSelectionChanged.connect(self.display_selected_row_data)
@@ -42,6 +42,8 @@ class PassengerCalculator(QMainWindow):
             self.table.setEditTriggers(QTableWidget.NoEditTriggers)
             self.table.setSelectionBehavior(QTableWidget.SelectRows)
             self.table.setSelectionMode(QTableWidget.SingleSelection)
+
+            self.table.setSortingEnabled(True)
 
     def display_selected_row_data(self):
         selected_row = self.table.currentRow()
