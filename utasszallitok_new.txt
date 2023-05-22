@@ -1,5 +1,4 @@
 típus;év;utas;személyzet;utazósebesség;felszállótömeg;fesztáv
-Airbus A300;1972;336;3;911;142;147
 Airbus A310;1982;218;2;950;150;144
 Airbus A320;1985;179;2;950;66;111
 Antonov An-24;1960;50;5;450;21;96
@@ -31,3 +30,4 @@ McDonnell Douglas DC-10;1970;345;5;940;200;155
 Tupoljev Tu-134;1967;80;3;870;47;95
 Tupoljev Tu-144;1968;140;2;2500;180;94
 Tupoljev Tu-154;1968;169;3;975;98;123
+Airbus A300;1972;336;3;911;142;147
